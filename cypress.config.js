@@ -1,10 +1,9 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from "cypress";
 
-module.exports = defineConfig({
-  projectId: 'jbutds',
+export default defineConfig({
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
+    supportFile: 'cypress/support/e2e.js',
+    baseUrl: 'http://localhost:8000',
     },
   },
-});
+);
