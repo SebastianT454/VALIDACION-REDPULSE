@@ -22,18 +22,25 @@ async function main() {
     const BASE_URL = "http://localhost:8000";
 
     const usuario = {
-      documento: "123456789",
+      documento: "122",
       tipoDocumento: "Cedula de Ciudadania",
-      password: "123456"
+      password: "123"
     };
 
     const enfermero = {
-      documento: "987654321",
+      documento: "112233",
       tipoDocumento: "Cedula de Ciudadania",
-      password: "123456"
+      password: "112233"
+    };
+
+    const admin = {
+      documento: "000",
+      tipoDocumento: "Cedula de Ciudadania",
+      password: "000"
     };
 
     // Login usuario
+    
     async function loginUsuario() {
 
       await page.goto(`${BASE_URL}/login`);
@@ -56,6 +63,7 @@ async function main() {
     }
 
     // Login enfermero
+
     async function loginEnfermero() {
 
       await page.goto(`${BASE_URL}/login`);
@@ -70,6 +78,29 @@ async function main() {
 
       await page.locator('input[name="contrasena"]')
         .fill(enfermero.password);
+
+      await page.locator('button')
+        .click();
+
+      await page.waitForTimeout(2000);
+    }
+
+    // Login admin
+
+    async function loginAdmin() {
+
+      await page.goto(`${BASE_URL}/login`);
+
+      await page.waitForTimeout(1000);
+
+      await page.locator('input[name="numero_documento"]')
+        .fill(admin.documento);
+
+      await page.locator('select[name="tipo_documento"]')
+        .selectOption(admin.tipoDocumento);
+
+      await page.locator('input[name="contrasena"]')
+        .fill(admin.password);
 
       await page.locator('button')
         .click();
@@ -198,7 +229,7 @@ async function main() {
 
     console.log("Test 5 - Filtrar solicitudes");
 
-    await loginUsuario();
+    await loginAdmin();
 
     await page.goto(`${BASE_URL}/filtrar_solicitudes`);
 

@@ -9,3 +9,4 @@ groq
 Flask-WTF
 assertpy
 pytest-benchmark
+deepeval

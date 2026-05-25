@@ -4,24 +4,22 @@
   "description": "Proyecto Red Pulse.",
   "type": "module",
   "scripts": {
-    "install:browsers": "playwright install chromium",
-    "test:openai": "tsx src/tests/redpulse-openai.e2e.ts",
-    "test:ollama": "tsx src/tests/redpulse-ollama.e2e.ts",
-    "test:gemini": "tsx src/tests/redpulse-gemini.e2e.ts",
-    "test:observe": "tsx src/tests/observe-extract.e2e.ts",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "test:ollama": "tsx src/tests/stagehand/redpulse-ollama.e2e.ts",
+    "test:gpt": "tsx src/tests/stagehand/redpulse-gpt.e2e.ts",
+    "test:observe": "tsx src/tests/stagehand/observe-extract.e2e.ts",
+
+    "deepeval:all": "deepeval test run src/tests/deepeval_tests",
+    "deepeval:toxicity": "deepeval test run src/tests/deepeval_tests/test_toxicity.py",
+    "deepeval:correctness": "deepeval test run src/tests/deepeval_tests/test_correctness.py",
+    "deepeval:rag": "deepeval test run src/tests/deepeval_tests/test_rag_login.py",
+    "deepeval:agent": "deepeval test run src/tests/deepeval_tests/test_agent_completion.py"
   },
   "dependencies": {
-    "@browserbasehq/stagehand": "^3.4.0",
-    "dotenv": "^16.4.7",
-    "openai": "^4.104.0",
-    "playwright": "^1.53.0",
-    "zod": "^3.24.2"
-  },
-  "devDependencies": {
-    "cypress": "^15.15.0",
+    "@browserbasehq/stagehand": "latest",
+    "dotenv": "^16.4.5",
+    "playwright": "latest",
     "tsx": "^4.19.2",
-    "typescript": "^5.8.3"
-  }
+    "typescript": "latest"
+  },
+  "devDependencies": {}
 }

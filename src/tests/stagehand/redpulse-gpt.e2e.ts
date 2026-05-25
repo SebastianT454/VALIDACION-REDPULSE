@@ -25,25 +25,31 @@ async function main() {
     const BASE_URL = "http://localhost:8000";
 
     const usuario = {
-      documento: "123456789",
+      documento: "122",
       tipoDocumento: "Cedula de Ciudadania",
       password: "123456",
     };
 
     const enfermero = {
-      documento: "987654321",
+      documento: "112233",
       tipoDocumento: "Cedula de Ciudadania",
-      password: "123456",
+      password: "112233",
+    };
+
+    const admin = {
+      documento: "000",
+      tipoDocumento: "Cedula de Ciudadania",
+      password: "000",
     };
 
     // LOGIN USUARIO
-    
+
     async function loginUsuario() {
       await page.goto(`${BASE_URL}/login`);
       await page.waitForTimeout(1000);
 
       await stagehand.act(
-        "Type 123456789 in the document number field"
+        `Type ${usuario.documento} in the document number field`
       );
 
       await stagehand.act(
@@ -51,7 +57,7 @@ async function main() {
       );
 
       await stagehand.act(
-        "Type 123456 in the password field"
+        `Type ${usuario.password} in the password field`
       );
 
       await stagehand.act(
@@ -68,7 +74,7 @@ async function main() {
       await page.waitForTimeout(1000);
 
       await stagehand.act(
-        "Type 987654321 in the document number field"
+        `Type ${enfermero.documento} in the document number field`
       );
 
       await stagehand.act(
@@ -76,7 +82,32 @@ async function main() {
       );
 
       await stagehand.act(
-        "Type 123456 in the password field"
+        `Type ${enfermero.password} in the password field`
+      );
+
+      await stagehand.act(
+        "Click the login button"
+      );
+
+      await page.waitForTimeout(2000);
+    }
+
+    // LOGIN ADMIN
+
+    async function loginAdmin() {
+      await page.goto(`${BASE_URL}/login`);
+      await page.waitForTimeout(1000);
+
+      await stagehand.act(
+        `Type ${admin.documento} in the document number field`
+      );
+
+      await stagehand.act(
+        "Select Cedula de Ciudadania in the document type dropdown"
+      );
+
+      await stagehand.act(
+        `Type ${admin.password} in the password field`
       );
 
       await stagehand.act(
@@ -175,7 +206,7 @@ async function main() {
     
     console.log("Test 5 - Filtrar solicitudes");
 
-    await loginUsuario();
+    await loginAdmin();
 
     await page.goto(`${BASE_URL}/filtrar_solicitudes`);
     await page.waitForTimeout(2000);

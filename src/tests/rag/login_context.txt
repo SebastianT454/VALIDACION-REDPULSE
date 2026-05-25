@@ -1,0 +1,19 @@
+# Contexto RAG para el escenario de login de REDPULSE
+Sistema bajo prueba: http://localhost:8000/login
+
+Credenciales válidas:
+- Usuario regular: documento 122, tipo Cédula de Ciudadanía, contraseña 123
+- Enfermero: documento 112233, tipo Cédula de Ciudadanía, contraseña 112233
+- Administrador: documento 000, tipo Cédula de Ciudadanía, contraseña 000
+
+Criterio de éxito: El login se considera exitoso si la página redirige al
+dashboard principal de Red Pulse (URL cambia a / o /dashboard) y se muestra
+el título "Red Pulse" o "Bienvenido".
+
+Criterio de fallo: El login se considera fallido si la página muestra el
+mensaje "¡Numero de documento o contraseña inexistentes o incorrectos!" en
+una ventana modal.
+
+Uso del contexto: Este archivo simula una pequeña base de conocimiento RAG
+que el agente o chatbot puede consultar para responder si la acción
+ejecutada en la página fue correcta.
