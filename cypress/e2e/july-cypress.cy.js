@@ -1,7 +1,6 @@
 
 describe('RedPulse - Pruebas Automatizadas', () => {
 
-
 //LOGIN  
   it('1. Login - E2E, UI, Regresión y Seguridad Básica', () => {
     cy.visit('/login');
@@ -17,7 +16,6 @@ describe('RedPulse - Pruebas Automatizadas', () => {
     
   });
 
-
 //MOVIMIENTOS  
     it('2. Movimientos - E2E, UI y Regresión', () => {
     cy.login();
@@ -29,7 +27,6 @@ describe('RedPulse - Pruebas Automatizadas', () => {
     cy.get('header').should('be.visible');
   });
  
-
 //PUNTOS
  it('3. Puntos - UI, Regresión y API', () => {
     cy.login();
@@ -38,8 +35,6 @@ describe('RedPulse - Pruebas Automatizadas', () => {
     cy.get('#total-puntos').should('be.visible');
     cy.get('.card-container').should('be.visible');
   });
-
-
 
 //REGISTRO DE DONACION HECHA POR EL ENFERMERO
   it('4. Registrar donación - E2E, UI y Regresión', () => {
@@ -105,8 +100,6 @@ describe('RedPulse - Pruebas Automatizadas', () => {
       .click();
   });
 
-
-  
 //FILTRAR SOLICITUDES 
   it('5. Filtrar Solicitudes - E2E, UI, Regresión y Accesibilidad Básica', () => {
     cy.login();
@@ -119,7 +112,4 @@ describe('RedPulse - Pruebas Automatizadas', () => {
     cy.get('button[type="submit"]').should('be.visible');
   });
   
-
-
-
 });

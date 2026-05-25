@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "install:browsers": "playwright install chromium",
-    "test:openai": "tsx tests/login-openai.e2e.ts",
-    "test:ollama": "tsx tests/login-ollama.e2e.ts",
-    "test:gemini": "tsx tests/login-gemini.e2e.ts",
-    "test:observe": "tsx tests/observe-extract.e2e.ts",
+    "test:openai": "tsx src/tests/redpulse-openai.e2e.ts",
+    "test:ollama": "tsx src/tests/redpulse-ollama.e2e.ts",
+    "test:gemini": "tsx src/tests/redpulse-gemini.e2e.ts",
+    "test:observe": "tsx src/tests/observe-extract.e2e.ts",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
