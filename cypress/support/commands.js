@@ -125,7 +125,7 @@ Cypress.Commands.add('loginAdmin', () => {
     .should('be.visible')
     .click();
 
-  cy.url().should('not.include', '/loginAdmin');
+  cy.url().should('include', '/estadisticas');
 });
 
 //REGISTRO

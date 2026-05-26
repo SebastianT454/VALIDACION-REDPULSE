@@ -76,6 +76,67 @@ describe('RedPulse - Pruebas de Tamayo', () => {
       force: true,
     });
   });
+
+  // CONVERTIR USUARIO A ENFERMERO
+  it('4. Convertir usuario a enfermero - E2E, UI y Regresión', () => {
+    cy.loginAdmin();
+    
+    cy.contains('Convertir Enfermero').should('be.visible').click();
+    cy.url().should('include', '/convertir_enfermero');
+    
+    cy.contains('h2', 'Convertir usuario en enfermero').should('be.visible');
+    
+    cy.get('input[name="cedula"]').should('be.visible').type('91663631');
+    cy.get('select[name="tipo_documento"]').should('be.visible').select('Cedula de Ciudadania');
+    
+    cy.intercept('POST', '/convertir_enfermero').as('convertirEnfermero');
+    
+    cy.contains('button', 'Convertir en enfermero').should('be.visible').click();
+    
+    cy.wait('@convertirEnfermero').then((interception) => {
+      expect(interception.response.statusCode).to.not.eq(500);
+    });
+    
+    cy.get('body').should('not.contain', 'Internal Server Error');
+    
+    cy.get('#message-popup.active', { timeout: 10000 }).should('be.visible');
+  });
+
+
+
+
   
+  // GESTIONAR USUARIOS - ELIMINAR USUARIO
+  it('5. Gestionar usuarios - eliminar usuario - E2E, UI y Regresión', () => {
+    cy.loginAdmin();
+    
+    cy.contains('Visualizar Usuarios').should('be.visible').click();
+    cy.url().should('include', '/visualizar_usuarios');
+    
+    cy.contains('h2', 'Usuarios (excluyendo administradores)').should('be.visible');
+    cy.get('table').should('be.visible');
+    
+    cy.get('tbody').then(($tbody) => {
+      if ($tbody.find('tr').length > 1) {
+        cy.get('.delete-button').first().should('be.visible');
+        
+        cy.intercept('POST', '/visualizar_usuarios').as('eliminarUsuario');
+        
+        cy.on('window:confirm', () => true);
+        
+        cy.get('.delete-button').first().click();
+        
+        cy.wait('@eliminarUsuario').then((interception) => {
+          expect(interception.response.statusCode).to.not.eq(500);
+        });
+        
+        cy.get('#message-popup.active', { timeout: 10000 }).should('be.visible');
+        
+        cy.contains('button', 'Cerrar').should('be.visible').click();
+      }
+    });
+    
+    cy.get('body').should('not.contain', 'Internal Server Error');
+  });
 
 });
