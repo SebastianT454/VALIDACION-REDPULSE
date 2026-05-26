@@ -9,7 +9,7 @@ async function main() {
 
     model: {
       modelName: process.env.OPENAI_MODEL || "openai/gpt-4.1-mini",
-      apiKey: process.env.OPENAI_API_KEY!,
+      apiKey: process.env.OPENAI_API_KEY_JULY!,
     },
 
     localBrowserLaunchOptions: {

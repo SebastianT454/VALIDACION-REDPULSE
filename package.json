@@ -4,9 +4,19 @@
   "description": "Proyecto Red Pulse.",
   "type": "module",
   "scripts": {
-    "test:ollama": "tsx src/tests/stagehand/redpulse-ollama.e2e.ts",
-    "test:gpt": "tsx src/tests/stagehand/redpulse-gpt.e2e.ts",
-    "test:observe": "tsx src/tests/stagehand/observe-extract.e2e.ts",
+    "test:july-ollama": "tsx src/tests/stagehand/july-ollama.e2e.ts",
+    "test:july-gpt": "tsx src/tests/stagehand/july-gpt.e2e.ts",
+    "test:lau-ollama": "tsx src/tests/stagehand/lau-ollama.e2e.ts",
+    "test:lau-gpt": "tsx src/tests/stagehand/lau-gpt.e2e.ts",
+    "test:ximena-ollama": "tsx src/tests/stagehand/ximena-ollama.e2e.ts",
+    "test:ximena-gpt": "tsx src/tests/stagehand/ximena-gpt.e2e.ts",
+    "test:tamayo-ollama": "tsx src/tests/stagehand/tamayo-ollama.e2e.ts",
+    "test:tamayo-gpt": "tsx src/tests/stagehand/tamayo-gpt.e2e.ts",
+
+    "test:july-observe": "tsx src/tests/stagehand/observe-extract-july.e2e.ts",
+    "test:lau-observe": "tsx src/tests/stagehand/observe-extract-lau.e2e.ts",
+    "test:ximena-observe": "tsx src/tests/stagehand/observe-extract-ximena.e2e.ts",
+    "test:tamayo-observe": "tsx src/tests/stagehand/observe-extract-tamayo.e2e.ts",
 
     "deepeval:all": "deepeval test run src/tests/deepeval_tests",
     "deepeval:toxicity": "deepeval test run src/tests/deepeval_tests/test_toxicity.py",
