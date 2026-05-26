@@ -12,12 +12,10 @@
     "test:ximena-gpt": "tsx src/tests/stagehand/ximena-gpt.e2e.ts",
     "test:tamayo-ollama": "tsx src/tests/stagehand/tamayo-ollama.e2e.ts",
     "test:tamayo-gpt": "tsx src/tests/stagehand/tamayo-gpt.e2e.ts",
-
     "test:july-observe": "tsx src/tests/stagehand/observe-extract-july.e2e.ts",
     "test:lau-observe": "tsx src/tests/stagehand/observe-extract-lau.e2e.ts",
     "test:ximena-observe": "tsx src/tests/stagehand/observe-extract-ximena.e2e.ts",
     "test:tamayo-observe": "tsx src/tests/stagehand/observe-extract-tamayo.e2e.ts",
-
     "deepeval:all": "deepeval test run src/tests/deepeval_tests",
     "deepeval:toxicity": "deepeval test run src/tests/deepeval_tests/test_toxicity.py",
     "deepeval:correctness": "deepeval test run src/tests/deepeval_tests/test_correctness.py",
@@ -25,11 +23,13 @@
     "deepeval:agent": "deepeval test run src/tests/deepeval_tests/test_agent_completion.py"
   },
   "dependencies": {
-    "@browserbasehq/stagehand": "latest",
+    "@browserbasehq/stagehand": "^2.5.8",
     "dotenv": "^16.4.5",
     "playwright": "latest",
     "tsx": "^4.19.2",
     "typescript": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "cypress": "^13.14.2"
+  }
 }
