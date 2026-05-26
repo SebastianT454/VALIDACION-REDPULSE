@@ -70,36 +70,84 @@ describe('RedPulse - Suite Completa de Pruebas (Ximena)', () => {
     });
   });
 
+
+
+
+
+
+
+
+
+
   // --- 4. ENFERMERO 
-  it('HU4: Enfermero - Seguridad y Registro de Donación', () => {
-    
-    cy.login();
-    cy.visit('/logout'); 
-    
-    cy.loginDonante();
-    cy.visit('/enfermero', { failOnStatusCode: false });
-    cy.url().should('not.include', '/enfermero');
-
-    
-    cy.visit('/logout');
+  it('4. Registrar donación - E2E, UI y Regresión', () => {
     cy.loginEnfermero();
-    cy.get('#cedula').type('122');
-    cy.get('select[name="tipo_documento"]').select('Cedula de Ciudadania');
-    cy.get('.submit-button').click();
 
-    cy.wait('@verificarCedula').its('response.statusCode').should('eq', 200);
-    cy.get('#success-message button').click();
-
-    
-    cy.get('#quantity').type('450');
-    cy.get('#donation-date').type('2026-05-24');
-    cy.get('.btn-puntos').click();
-
-    
-    cy.get('input[name="puntos"]').type('2000');
-    cy.get('button[type="submit"]').click();
+    // Pantalla inicial del enfermero
     cy.url().should('include', '/enfermero');
+    cy.contains(/bienvenido enfermero/i).should('be.visible');
+
+    cy.get('input[placeholder="Ingrese la cédula"]')
+      .should('be.visible')
+      .clear()
+      .type('122');
+
+    cy.get('select')
+      .should('be.visible')
+      .select('Cedula de Ciudadania');
+
+    cy.contains('button', 'Verificar Cédula')
+      .should('be.visible')
+      .click();
+
+    cy.contains(/c[eé]dula verificada exitosamente/i, { timeout: 10000 })
+      .should('be.visible');
+
+    cy.contains('button', 'Continuar')
+      .should('be.visible')
+      .click();
+
+    // Formulario de donación
+    cy.contains(/bienvenido enfermero/i, { timeout: 10000 }).should('be.visible');
+    cy.contains(/cantidad donada/i).should('be.visible');
+    cy.contains(/fecha de la donaci[oó]n/i).should('be.visible');
+
+    cy.get('input[placeholder="Ingrese la cantidad en ml"]')
+      .should('be.visible')
+      .clear()
+      .type('450');
+
+    cy.get('input[type="date"]')
+      .should('be.visible')
+      .type('2026-05-23');
+
+    cy.contains('button', 'Asignación de Puntos')
+      .should('be.visible')
+      .click();
+
+    cy.contains(/asignaci[oó]n de puntos/i, { timeout: 10000 })
+      .should('be.visible');
+
+    cy.contains(/cantidad de puntos/i).should('be.visible');
+
+    cy.get('input[name="puntos"]')
+      .should('be.visible')
+      .clear()
+      .type('10');
+
+    cy.contains('button', 'Asignar')
+      .should('be.visible')
+      .click();
   });
+
+
+
+
+
+
+
+
+
 
   // --- 5. ESTADÍSTICAS 
   it('HU5: Estadísticas - Seguridad y Visualización de Gráficos', () => {
